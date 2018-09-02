@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('dashboard');
 });
+
+Route::get('/trello', 'TrelloController@get');
+Route::get('/trello/filter', 'TrelloController@filter');
