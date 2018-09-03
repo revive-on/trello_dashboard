@@ -39,7 +39,7 @@ class TrelloApiService
         return $this;
     }
 
-    public function filterById(string $apiKey, string $token, string $id): TrelloApiService
+    public function filterById(string $id): TrelloApiService
     {
         $cards = $this->contents;
         $filtered_cards = [];
