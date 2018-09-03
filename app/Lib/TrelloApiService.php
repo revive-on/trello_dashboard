@@ -14,7 +14,6 @@ use Trello\Manager;
 
 class TrelloApiService
 {
-    const BOARD_ID = 'lzHhox3G';
     /**
      * @var Client
      */
@@ -34,22 +33,28 @@ class TrelloApiService
     {
         $this->client = new Client();
         $this->client->authenticate($apiKey, $token, Client::AUTH_URL_CLIENT_ID);
-
-        $this->contents = $this->client->boards()->cards()->all(self::BOARD_ID);
         return $this;
     }
 
-    public function filterById(string $id): TrelloApiService
+    public function getBoardCard(string $boardId, array $filter = [])
     {
-        $cards = $this->contents;
-        $filtered_cards = [];
-        // TODO : fix filter pattern
-        foreach ($cards as $card) {
-            if (is_array($card['idMembers']) && in_array($id, $card['idMembers'])) {
-                $filtered_cards[] = $card;
+        $boardCards = $this->client->boards()->cards()->all($boardId);
+        if (!empty($filter['id'])) {
+            $filtered_cards = [];
+            $id = $filter['id'];
+            // TODO : fix filter pattern
+            foreach ($boardCards as $card) {
+                if (is_array($card['idMembers']) && in_array($id, $card['idMembers'])) {
+                    $filtered_cards[] = $card;
+                }
             }
+            $boardCards = $filtered_cards;
         }
-        $this->contents = $filtered_cards;
+        if (!empty($filter['status'])) {
+            $filtered_cards = [];
+            //todo
+        }
+        $this->contents = $boardCards;
         return $this;
     }
 
