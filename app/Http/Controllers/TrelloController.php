@@ -20,12 +20,12 @@ class TrelloController extends Controller
     public function get()
     {
         $trelloApiService = new TrelloApiService();
-        return $this->toJson($trelloApiService->get(self::KEY, self::TOKEN));
+        return $this->toJson($trelloApiService->init(self::KEY, self::TOKEN)->get());
     }
 
     public function filter()
     {
         $trelloApiService = new TrelloApiService();
-        return $this->toJson($trelloApiService->filterById(self::KEY, self::TOKEN, self::ID_VELMONT));
+        return $this->toJson($trelloApiService->init(self::KEY, self::TOKEN)->filterById(self::KEY, self::TOKEN, self::ID_VELMONT)->get());
     }
 }
