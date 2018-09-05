@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/trello', 'TrelloController@getBoardCard');
+Route::get('/trello/filter', 'TrelloController@getBoardCardFilteredById');
+Route::get('/trello/member', 'TrelloController@getMemberId');

@@ -27,34 +27,53 @@ class TrelloApiService
     /**
      * @param string $apiKey
      * @param string $token
-     * @return
+     * @return TrelloApiService
      */
     public function init(string $apiKey, string $token): TrelloApiService
     {
         $this->client = new Client();
         $this->client->authenticate($apiKey, $token, Client::AUTH_URL_CLIENT_ID);
+        $this->contents = [];
         return $this;
     }
 
-    public function getBoardCard(string $boardId, array $filter = [])
+    public function boardMember(string $boardId, string $memberName)
     {
-        $boardCards = $this->client->boards()->cards()->all($boardId);
-        if (!empty($filter['id'])) {
-            $filtered_cards = [];
-            $id = $filter['id'];
-            // TODO : fix filter pattern
-            foreach ($boardCards as $card) {
-                if (is_array($card['idMembers']) && in_array($id, $card['idMembers'])) {
-                    $filtered_cards[] = $card;
+        $nameFilter = array('username' => $memberName);
+        $this->contents = $this->client->boards()->members()->all($boardId);
+        $this->filter($nameFilter);
+        return $this;
+    }
+
+    public function boardCards(string $boardId, string $visibilityFilter = '')
+    {
+        if (empty($visibilityFilter))
+            $boardCards = $this->client->boards()->cards()->all($boardId);
+        else
+            $boardCards = $this->client->boards()->cards()->filter($boardId, $visibilityFilter);
+        $this->contents = $boardCards;
+        return $this;
+    }
+
+    public function filter(array $filters = [])
+    {
+        $filteredContents = [];
+        foreach ($filters as $key => $value) {
+            foreach ($this->contents as $content) {
+                if (is_array($content[$key])) {
+                    foreach($content[$key] as $contentValue){
+                        if($contentValue === $value){
+                            $filteredContents[] = $content;
+                        }
+                    }
+                } else {
+                    if ($content[$key] === $value) {
+                        $filteredContents[] = $content;
+                    }
                 }
             }
-            $boardCards = $filtered_cards;
         }
-        if (!empty($filter['status'])) {
-            $filtered_cards = [];
-            //todo
-        }
-        $this->contents = $boardCards;
+        $this->contents = $filteredContents;
         return $this;
     }
 
