@@ -18,16 +18,23 @@ class TrelloController extends Controller
     const ID_VELMONT = "554f251ab2a66a62870dcee6";
     const BOARD_ID = 'lzHhox3G';
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getBoardCard()
     {
         $trelloApiService = new TrelloApiService();
         return $this->toJson($trelloApiService->init(self::KEY, self::TOKEN)->boardCards(self::BOARD_ID)->get());
     }
 
-    public function getBoardCardFilteredById()
+    /**
+     * @param string $memberName
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getBoardCardFilteredById(string $memberName)
     {
         $trelloApiService = new TrelloApiService();
-        $memberId = $this->getMemberId('velmont');
+        $memberId = $this->getMemberId($memberName);
         $filter = array(
             "idMembers" => $memberId
         );
@@ -35,6 +42,10 @@ class TrelloController extends Controller
         return $this->toJson($trelloApiService->init(self::KEY, self::TOKEN)->boardCards(self::BOARD_ID, $visibility)->filter($filter)->get());
     }
 
+    /**
+     * @param string $memberName
+     * @return string
+     */
     public function getMemberId(string $memberName = 'velmont'): string
     {
         $trelloApiService = new TrelloApiService();

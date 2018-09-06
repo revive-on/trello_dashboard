@@ -31464,14 +31464,14 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_boot
 
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
-  el: '#app',
+    el: '#app',
 
-  components: {
-    App: __WEBPACK_IMPORTED_MODULE_0__components_App_vue___default.a
-  },
-  render: function render(h) {
-    return h(__WEBPACK_IMPORTED_MODULE_0__components_App_vue___default.a);
-  }
+    components: {
+        App: __WEBPACK_IMPORTED_MODULE_0__components_App_vue___default.a
+    },
+    render: function render(h) {
+        return h(__WEBPACK_IMPORTED_MODULE_0__components_App_vue___default.a);
+    }
 });
 
 /***/ }),
@@ -54017,7 +54017,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54049,11 +54049,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             userList: [{
-                "name": "김지수"
+                "name": "김지수",
+                "trelloId": "user19272453"
             }, {
-                "name": "신벼리"
+                "name": "신벼리",
+                "trelloId": "soyagok11"
             }, {
-                "name": "김대훈"
+                "name": "김대훈",
+                "trelloId": "velmont"
             }]
         };
     }
@@ -54185,7 +54188,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     created: function created() {
         var self = this;
-        axios.get('/api/trello/filter').then(function (response) {
+        axios.get('/api/trello/filter/' + self.user.trelloId).then(function (response) {
             self.tasks = response.data;
             console.log(self.tasks);
         });
@@ -54333,8 +54336,9 @@ var render = function() {
               directives: [
                 {
                   name: "b-toggle",
-                  rawName: "v-b-toggle.collapse1_inner",
-                  modifiers: { collapse1_inner: true }
+                  rawName: "v-b-toggle",
+                  value: _vm.task.id,
+                  expression: "task.id"
                 }
               ],
               attrs: { size: "sm" }
@@ -54344,7 +54348,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-collapse",
-            { staticClass: "mt-2", attrs: { id: "collapse1_inner" } },
+            { staticClass: "mt-2", attrs: { id: _vm.task.id } },
             [_c("b-card", [_vm._v(_vm._s(_vm.task.desc))])],
             1
           )

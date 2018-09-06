@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/trello', 'TrelloController@getBoardCard');
-Route::get('/trello/filter', 'TrelloController@getBoardCardFilteredById');
+Route::get('/trello/filter/{id}', 'TrelloController@getBoardCardFilteredById');
 Route::get('/trello/member', 'TrelloController@getMemberId');

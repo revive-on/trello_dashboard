@@ -18,13 +18,16 @@
             return {
                 userList: [
                     {
-                        "name": "김지수"
+                        "name": "김지수",
+                        "trelloId": "user19272453"
                     },
                     {
-                        "name": "신벼리"
+                        "name": "신벼리",
+                        "trelloId": "soyagok11"
                     },
                     {
-                        "name": "김대훈"
+                        "name": "김대훈",
+                        "trelloId": "velmont"
                     },
                 ]
             }
