@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Lib\TrelloApiService;
+use App\Service\TrelloApiService;
 
 class TrelloController extends Controller
 {

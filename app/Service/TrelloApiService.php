@@ -6,10 +6,9 @@
  * Time: 오후 9:17
  */
 
-namespace App\Lib;
+namespace App\Service;
 
 use Trello\Client;
-use Trello\Manager;
 
 
 class TrelloApiService
