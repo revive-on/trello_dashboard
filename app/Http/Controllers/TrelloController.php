@@ -39,7 +39,7 @@ class TrelloController extends Controller
             "idMembers" => $memberId
         );
         $visibility = 'all';
-        return $this->toJson($trelloApiService->init(self::KEY, self::TOKEN)->boardCards(self::BOARD_ID, $visibility)->filter($filter)->get());
+        return $this->toJson($trelloApiService->init(self::KEY, self::TOKEN)->boardCards(self::BOARD_ID)->filter($filter)->get());
     }
 
     /**

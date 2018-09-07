@@ -46,8 +46,11 @@ class TrelloApiService
 
     public function boardCards(string $boardId, string $visibilityFilter = '')
     {
+        $allowCustom = array(
+            'customFieldItems' => 'true'
+        );
         if (empty($visibilityFilter))
-            $boardCards = $this->client->boards()->cards()->all($boardId);
+            $boardCards = $this->client->boards()->cards()->all($boardId, $allowCustom);
         else
             $boardCards = $this->client->boards()->cards()->filter($boardId, $visibilityFilter);
         $this->contents = $boardCards;
@@ -60,8 +63,8 @@ class TrelloApiService
         foreach ($filters as $key => $value) {
             foreach ($this->contents as $content) {
                 if (is_array($content[$key])) {
-                    foreach($content[$key] as $contentValue){
-                        if($contentValue === $value){
+                    foreach ($content[$key] as $contentValue) {
+                        if ($contentValue === $value) {
                             $filteredContents[] = $content;
                         }
                     }
