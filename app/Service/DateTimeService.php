@@ -15,7 +15,7 @@ use DateTime;
  * Class DateTimeService
  * @package App\Service
  *
- * @method string getNow()
+ * @method string getDateTime()
  * @method string getYear()
  * @method string getMonth()
  * @method string getDay()
@@ -32,7 +32,7 @@ class DateTimeService
      * @var DateTime
      * @setter false
      */
-    protected $now;
+    protected $dateTime;
 
     /**
      * @var string
@@ -78,15 +78,26 @@ class DateTimeService
     {
         if (empty($timeString))
             $timeString = 'now';
-        $this->now = new DateTime($timeString, new \DateTimeZone("Asia/Seoul"));
-        $this->year = $this->now->format('Y');
-        $this->month = $this->now->format('n'); // leading zeros : m
-        $this->day = $this->now->format('j'); // leading zeros : d
+        $this->dateTime = new DateTime($timeString, new \DateTimeZone("Asia/Seoul"));
+        $this->year = $this->dateTime->format('Y');
+        $this->month = $this->dateTime->format('n'); // leading zeros : m
+        $this->day = $this->dateTime->format('j'); // leading zeros : d
 
-        $this->hour = $this->now->format('H');
-        $this->minute = $this->now->format('i');
-        $this->second = $this->now->format('s');
+        $this->hour = $this->dateTime->format('H');
+        $this->minute = $this->dateTime->format('i');
+        $this->second = $this->dateTime->format('s');
 
         return $this;
+    }
+
+    /**
+     * @param string $format
+     * @return string
+     */
+    public function toString(string $format = ''): string
+    {
+        if (empty($format))
+            $format = self::DATE_TIME_FORMAT;
+        return $this->dateTime->format($format);
     }
 }
