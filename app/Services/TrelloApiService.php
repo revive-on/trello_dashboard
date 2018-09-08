@@ -6,7 +6,7 @@
  * Time: 오후 9:17
  */
 
-namespace App\Service;
+namespace App\Services;
 
 use Trello\Client;
 
@@ -44,17 +44,22 @@ class TrelloApiService
         return $this;
     }
 
-    public function boardCards(string $boardId, string $visibilityFilter = '')
+    public function boardCards(string $boardId, string $visibilityFilter = ''): TrelloApiService
     {
-        $allowCustom = array(
+        $allowShowCustomField = array(
             'customFieldItems' => 'true'
         );
         if (empty($visibilityFilter))
-            $boardCards = $this->client->boards()->cards()->all($boardId, $allowCustom);
+            $boardCards = $this->client->boards()->cards()->all($boardId, $allowShowCustomField);
         else
             $boardCards = $this->client->boards()->cards()->filter($boardId, $visibilityFilter);
         $this->contents = $boardCards;
         return $this;
+    }
+
+    public function boardCustomFields(string $boardId): TrelloApiService
+    {
+        $boardFields = $this->client->board();
     }
 
     public function filter(array $filters = [])

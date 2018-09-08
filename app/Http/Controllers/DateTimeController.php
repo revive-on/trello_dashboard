@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Service\DateTimeService;
+use App\Services\DateTimeService;
 
 class DateTimeController extends Controller
 {

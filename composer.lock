@@ -4,55 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df334929ea85f683f46da3e5a121bc64",
+    "content-hash": "5ca9cb62bb4ec658e920d11f25207337",
     "packages": [
-        {
-            "name": "cdaguerre/php-trello-api",
-            "version": "0.9.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cdaguerre/php-trello-api.git",
-                "reference": "b1205d9ac9b24df03c2db5aa9a8c7418d28c0b78"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cdaguerre/php-trello-api/zipball/b1205d9ac9b24df03c2db5aa9a8c7418d28c0b78",
-                "reference": "b1205d9ac9b24df03c2db5aa9a8c7418d28c0b78",
-                "shasum": ""
-            },
-            "require": {
-                "guzzle/guzzle": "~3.7",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": ">=4.1"
-            },
-            "suggest": {
-                "symfony/http-foundation": "Needed for the Trello webhook service"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Trello\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Daguerre",
-                    "email": "christian@daguer.re"
-                }
-            ],
-            "description": "Trello API v1 client",
-            "homepage": "https://github.com/cdaguerre/php-trello-api",
-            "keywords": [
-                "trello"
-            ],
-            "time": "2015-06-16T14:25:56+00:00"
-        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -414,7 +367,7 @@
             "time": "2018-02-07T20:20:57+00:00"
         },
         {
-            "name": "guzzle/guzzle",
+            "name": "guzzlehttp/guzzle",
             "version": "v3.8.1",
             "source": {
                 "type": "git",
@@ -503,8 +456,54 @@
                 "rest",
                 "web service"
             ],
-            "abandoned": "guzzlehttp/guzzle",
             "time": "2014-01-28T22:29:15+00:00"
+        },
+        {
+            "name": "horace-velmont/php-trello-api",
+            "version": "0.9.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/horace-velmont/php-trello-api.git",
+                "reference": "da626e933ef5af83576e73be2ab5357f0c8a59be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/horace-velmont/php-trello-api/zipball/da626e933ef5af83576e73be2ab5357f0c8a59be",
+                "reference": "da626e933ef5af83576e73be2ab5357f0c8a59be",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~3.7",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "suggest": {
+                "symfony/http-foundation": "Needed for the Trello webhook service"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Trello\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Horace Velmont",
+                    "email": "dragond7@naver.com"
+                }
+            ],
+            "description": "Trello API v1 client",
+            "homepage": "https://github.com/horace-velmont/php-trello-api",
+            "keywords": [
+                "trello"
+            ],
+            "time": "2018-09-08T13:09:59+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -4817,7 +4816,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "cdaguerre/php-trello-api": 20,
+        "horace-velmont/php-trello-api": 20,
         "usmanhalalit/get-set-go": 20
     },
     "prefer-stable": true,

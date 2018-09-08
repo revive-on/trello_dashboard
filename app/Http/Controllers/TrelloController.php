@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Service\TrelloApiService;
+use App\Services\TrelloApiService;
 
 class TrelloController extends Controller
 {
@@ -43,10 +43,20 @@ class TrelloController extends Controller
     }
 
     /**
+     * @param string $customFieldName
+     * @return string
+     */
+    public function getCustomFieldId(string $customFieldName): string
+    {
+        $trelloApiService = new TrelloApiService();
+        $memberInfo = $trelloApiService->init(self::KEY, self::TOKEN);
+    }
+
+    /**
      * @param string $memberName
      * @return string
      */
-    public function getMemberId(string $memberName = 'velmont'): string
+    public function getMemberId(string $memberName): string
     {
         $trelloApiService = new TrelloApiService();
         $memberInfo = $trelloApiService->init(self::KEY, self::TOKEN)->boardMember(self::BOARD_ID, $memberName)->get();

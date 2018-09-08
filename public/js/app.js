@@ -54281,7 +54281,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54292,6 +54292,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -54328,6 +54330,12 @@ var render = function() {
         [
           _c("p", { staticClass: "card-text" }, [
             _vm._v(_vm._s(_vm.task.name))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "cart-text" }, [
+            _vm._v("Start date : "),
+            _c("br"),
+            _vm._v("\n            Due date : " + _vm._s(_vm.task.due))
           ]),
           _vm._v(" "),
           _c(
