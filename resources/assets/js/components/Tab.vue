@@ -15,19 +15,15 @@
             MainTask,
         },
         props: {
-            user: Object
+            user: Object,
+            tasks: Array
         },
         data() {
             return {
-                tasks: []
             }
         },
         created: function () {
-            let self = this;
-            axios.get('/api/trello/filter/'+self.user.trelloId).then(function (response) {
-                self.tasks = response.data;
-                console.log(self.tasks);
-            })
+
         }
     }
 </script>

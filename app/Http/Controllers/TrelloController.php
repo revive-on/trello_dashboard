@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Services\TrelloApiService;
+use Illuminate\Http\Request;
 
 class TrelloController extends Controller
 {
@@ -28,28 +29,68 @@ class TrelloController extends Controller
     }
 
     /**
-     * @param string $memberName
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getBoardCardFilteredById(string $memberName)
+    public function getBoardCardFilteredByIds(Request $request)
     {
+        $memberNames = $request->input('memberNames');
+        $memberNamesFilter = array(
+            'username' => $memberNames
+        );
+        /** @var array $customFieldIds */
+        $customFieldIds = $request->get('customFieldIds');
+        $customFieldIds = ['5b9100c31ff50a5026ca4e51'];
+
         $trelloApiService = new TrelloApiService();
-        $memberId = $this->getMemberId($memberName);
-        $filter = array(
-            "idMembers" => $memberId
+        $memberInfos = $this->getMemberInfos($memberNamesFilter);
+        $memberIds = [];
+        foreach ($memberInfos as $memberInfo) {
+            $memberIds[$memberInfo['username']] = $memberInfo['id'];
+        }
+        $idFilter = array(
+            "idMembers" => $memberIds,
         );
         $visibility = 'all';
-        return $this->toJson($trelloApiService->init(self::KEY, self::TOKEN)->boardCards(self::BOARD_ID)->filter($filter)->get());
+        $customFieldsFilter = array(
+            array(
+                'ids' => $customFieldIds,
+                'name' => 'start',
+                'type' => 'date'
+            )
+        );
+        $cardsByIds = $trelloApiService
+            ->init(self::KEY, self::TOKEN)
+            ->boardCards(self::BOARD_ID)
+            ->filter(['dueComplete' => false])
+            ->notEmptyFilter(['due'])
+            ->customFields($customFieldsFilter)
+            ->filter($idFilter, true)
+            ->get();
+
+        //change memberId key to memberName key
+        foreach ($memberIds as $key => $value) {
+            $cardsByIds[$key] = $cardsByIds[$value];
+            unset($cardsByIds[$value]);
+        }
+        return $this->toJson($cardsByIds);
     }
 
     /**
      * @param string $customFieldName
      * @return string
      */
-    public function getCustomFieldId(string $customFieldName): string
+    public function getCustomFieldId(string $customFieldName = ''): string
     {
         $trelloApiService = new TrelloApiService();
-        $memberInfo = $trelloApiService->init(self::KEY, self::TOKEN);
+
+        $customFieldInfo = $trelloApiService
+            ->init(self::KEY, self::TOKEN)
+            ->boardCustomFields(self::BOARD_ID)
+            ->filter(array('name' => $customFieldName))
+            ->getFirst();
+
+        return $customFieldInfo['id'];
     }
 
     /**
@@ -59,7 +100,14 @@ class TrelloController extends Controller
     public function getMemberId(string $memberName): string
     {
         $trelloApiService = new TrelloApiService();
-        $memberInfo = $trelloApiService->init(self::KEY, self::TOKEN)->boardMember(self::BOARD_ID, $memberName)->get();
-        return $memberInfo[0]['id'];
+        $memberInfo = $trelloApiService->init(self::KEY, self::TOKEN)->boardMember(self::BOARD_ID, $memberName)->getFirst();
+        return $memberInfo['id'];
+    }
+
+    public function getMemberInfos(array $memberNamesFilter = []): array
+    {
+        $trelloApiService = new TrelloApiService();
+        $memberInfo = $trelloApiService->init(self::KEY, self::TOKEN)->boardMembers(self::BOARD_ID, $memberNamesFilter)->get();
+        return $memberInfo;
     }
 }

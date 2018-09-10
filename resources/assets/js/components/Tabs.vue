@@ -1,7 +1,7 @@
 <template>
     <b-tabs>
-        <b-tab v-for="(user,index) in userList" :title="user.name" :key="index">
-            <tab :user="user"></tab>
+        <b-tab v-for="user in userList" :title="user.name" :key="user.trelloId">
+            <tab :user="user" :tasks="tasks[user.trelloId]"></tab>
         </b-tab>
     </b-tabs>
 </template>
@@ -14,8 +14,9 @@
         components: {
             Tab,
         },
-        data: function () {
+        data() {
             return {
+                customFieldId: '',
                 userList: [
                     {
                         "name": "김지수",
@@ -29,9 +30,24 @@
                         "name": "김대훈",
                         "trelloId": "velmont"
                     },
-                ]
+                ],
+                tasks: []
             }
-        }
+        },
+        created() {
+            let self = this;
+            let ids = [];
+            self.userList.forEach(
+                function addId(value) {
+                    ids.push(value.trelloId);
+                }
+            );
+            axios.post('/api/trello/filter', {
+                memberNames: ids
+            }).then(function (response) {
+                self.tasks = response.data;
+            });
+        },
     }
 </script>
 

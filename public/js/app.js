@@ -54017,7 +54017,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54048,6 +54048,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
+            customFieldId: '',
             userList: [{
                 "name": "김지수",
                 "trelloId": "user19272453"
@@ -54057,8 +54058,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, {
                 "name": "김대훈",
                 "trelloId": "velmont"
-            }]
+            }],
+            tasks: []
         };
+    },
+    created: function created() {
+        var self = this;
+        var ids = [];
+        self.userList.forEach(function addId(value) {
+            ids.push(value.trelloId);
+        });
+        axios.post('/api/trello/filter', {
+            memberNames: ids
+        }).then(function (response) {
+            self.tasks = response.data;
+        });
     }
 });
 
@@ -54148,7 +54162,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54178,21 +54192,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         MainTask: __WEBPACK_IMPORTED_MODULE_0__MainTask_vue___default.a
     },
     props: {
-        user: Object
+        user: Object,
+        tasks: Array
     },
     data: function data() {
-        return {
-            tasks: []
-        };
+        return {};
     },
 
-    created: function created() {
-        var self = this;
-        axios.get('/api/trello/filter/' + self.user.trelloId).then(function (response) {
-            self.tasks = response.data;
-            console.log(self.tasks);
-        });
-    }
+    created: function created() {}
 });
 
 /***/ }),
@@ -54281,7 +54288,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54309,9 +54316,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "main-task",
+    data: function data() {
+        return {};
+    },
+
     props: {
         task: Object
-    }
+    },
+    computed: {}
 });
 
 /***/ }),
@@ -54328,12 +54340,20 @@ var render = function() {
       _c(
         "b-card",
         [
-          _c("p", { staticClass: "card-text" }, [
-            _vm._v(_vm._s(_vm.task.name))
-          ]),
+          _c(
+            "p",
+            { staticClass: "card-text" },
+            [
+              _c("b-badge", { attrs: { variant: "info" } }, [
+                _vm._v("ISSUE-" + _vm._s(_vm.task.idShort))
+              ]),
+              _vm._v(" " + _vm._s(_vm.task.name))
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("p", { staticClass: "cart-text" }, [
-            _vm._v("Start date : "),
+            _vm._v("Start date : " + _vm._s(_vm.task.start)),
             _c("br"),
             _vm._v("\n            Due date : " + _vm._s(_vm.task.due))
           ]),
@@ -54412,11 +54432,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-tabs",
-    _vm._l(_vm.userList, function(user, index) {
+    _vm._l(_vm.userList, function(user) {
       return _c(
         "b-tab",
-        { key: index, attrs: { title: user.name } },
-        [_c("tab", { attrs: { user: user } })],
+        { key: user.trelloId, attrs: { title: user.name } },
+        [_c("tab", { attrs: { user: user, tasks: _vm.tasks[user.trelloId] } })],
         1
       )
     })

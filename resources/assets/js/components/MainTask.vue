@@ -1,8 +1,8 @@
 <template>
     <div>
         <b-card>
-            <p class="card-text">{{task.name}}</p>
-            <p class="cart-text">Start date : <br/>
+            <p class="card-text"> <b-badge variant="info">ISSUE-{{task.idShort}}</b-badge> {{task.name}}</p>
+            <p class="cart-text">Start date : {{task.start}}<br/>
                 Due date : {{task.due}}</p>
             <b-btn v-b-toggle="task.id" size="sm">내용보기...</b-btn>
             <b-collapse :id="task.id" class="mt-2">
@@ -15,9 +15,13 @@
 <script>
     export default {
         name: "main-task",
+        data() {
+            return {}
+        },
         props: {
             task: Object
         },
+        computed: {}
     }
 </script>
 

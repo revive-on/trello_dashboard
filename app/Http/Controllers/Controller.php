@@ -37,7 +37,8 @@ class Controller extends BaseController
     {
         $header = array(
             'Content-Type' => 'application/json; charset=UTF-8',
-            'charset' => 'utf-8'
+            'charset' => 'utf-8',
+            'Accept' => 'application/json'
         );
         return response()->json($data, 200, $header, JSON_UNESCAPED_UNICODE);
     }
