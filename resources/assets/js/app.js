@@ -9,8 +9,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.config.devtools = true;
-Vue.config.performance = true;
+//Vue.config.devtools = true;
+//Vue.config.performance = true;
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
