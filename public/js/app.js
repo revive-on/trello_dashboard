@@ -65494,7 +65494,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* 313 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\n\r\n@import \"~font-awesome/less/font-awesome.less\";\r\n@import \"~bootstrap/less/bootstrap.less\";\r\n^\r\nCan't resolve 'bootstrap/less/bootstrap.less' in 'D:\\dev_repos\\trello_dashboard\\resources\\assets\\vendor\\admin\\less'\r\n      in D:\\dev_repos\\trello_dashboard\\resources\\assets\\vendor\\admin\\less\\admin.less (line 2, column 0)\n    at runLoaders (D:\\dev_repos\\trello_dashboard\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at D:\\dev_repos\\trello_dashboard\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at D:\\dev_repos\\trello_dashboard\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (D:\\dev_repos\\trello_dashboard\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 314 */
