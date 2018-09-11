@@ -13,6 +13,7 @@
     "horace-velmont/php-trello-api": "0.9.5.x-dev@dev",
     "laravel/framework": "5.6.*",
     "laravel/tinker": "^1.0",
+    "scolib/admin": "^1.0",
     "usmanhalalit/get-set-go": "1.*@dev"
   },
   "require-dev": {

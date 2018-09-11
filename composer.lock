@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b92a911af77d9bf94d69339c95d152e0",
+    "content-hash": "7640a70cac125e3e6008b26e81511bbe",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -591,6 +591,99 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "kodicomponents/navigation",
+            "version": "v0.6.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KodiComponents/Navigation.git",
+                "reference": "594102b50a9768330e762abd90bfda145db404aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KodiComponents/Navigation/zipball/594102b50a9768330e762abd90bfda145db404aa",
+                "reference": "594102b50a9768330e762abd90bfda145db404aa",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "kodicomponents/support": "0.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "KodiComponents\\Navigation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Buchnev",
+                    "email": "butschster@gmail.com"
+                }
+            ],
+            "description": "The KodiCMS Support package.",
+            "homepage": "http://kodicms.com",
+            "keywords": [
+                "kodicms",
+                "laravel",
+                "menu",
+                "navigation"
+            ],
+            "time": "2017-06-03T09:49:04+00:00"
+        },
+        {
+            "name": "kodicomponents/support",
+            "version": "v0.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KodiComponents/Support.git",
+                "reference": "9090543605a2354c7454d707650a0abdb815b60a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KodiComponents/Support/zipball/9090543605a2354c7454d707650a0abdb815b60a",
+                "reference": "9090543605a2354c7454d707650a0abdb815b60a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "KodiComponents\\Support\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Buchnev",
+                    "email": "butschster@gmail.com"
+                }
+            ],
+            "description": "The KodiCMS Support package.",
+            "homepage": "http://kodicms.com",
+            "keywords": [
+                "kodicms",
+                "laravel",
+                "menu",
+                "navigation"
+            ],
+            "time": "2018-05-22T06:37:09+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1404,6 +1497,81 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "scolib/admin",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ScoLib/admin.git",
+                "reference": "ee87465e8a08952ecd5a264cff43689e97fd7d5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ScoLib/admin/zipball/ee87465e8a08952ecd5a264cff43689e97fd7d5e",
+                "reference": "ee87465e8a08952ecd5a264cff43689e97fd7d5e",
+                "shasum": ""
+            },
+            "require": {
+                "kodicomponents/navigation": "^0.6",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "~2.5",
+                "laravel/framework": "5.5.*",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench-core": "3.5.*",
+                "phpunit/phpunit": "~6.0",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Sco\\Admin\\Providers\\AdminServiceProvider",
+                        "Sco\\Admin\\Providers\\ResourcesServiceProvider",
+                        "Sco\\Admin\\Providers\\NavigationServiceProvider",
+                        "Sco\\Admin\\Providers\\ComponentServiceProvider",
+                        "Sco\\Admin\\Providers\\ArtisanServiceProvider"
+                    ],
+                    "aliases": {
+                        "Admin": "Sco\\Admin\\Facades\\Admin",
+                        "AdminColumn": "Sco\\Admin\\Facades\\AdminColumn",
+                        "AdminElement": "Sco\\Admin\\Facades\\AdminElement",
+                        "AdminForm": "Sco\\Admin\\Facades\\AdminForm",
+                        "AdminNavigation": "Sco\\Admin\\Facades\\AdminNavigation",
+                        "AdminView": "Sco\\Admin\\Facades\\AdminView",
+                        "AdminViewFilter": "Sco\\Admin\\Facades\\AdminViewFilter"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sco\\Admin\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "klgd",
+                    "email": "slice1213@gmail.com",
+                    "homepage": "http://www.scophp.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Admin package for Laravel 5.*, based on Vue 2.* and AdminLTE",
+            "homepage": "https://github.com/ScoLib/admin",
+            "keywords": [
+                "ScoLib",
+                "admin"
+            ],
+            "time": "2018-03-28T05:46:19+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
