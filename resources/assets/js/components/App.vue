@@ -21,8 +21,7 @@
     }
 </script>
 <style>
-    #app {
-        margin-left: 1em;
+    #apps {
     }
 
     .heading h1 {

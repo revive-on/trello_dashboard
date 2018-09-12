@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -20,13 +19,13 @@ window.Vue = require('vue');
 
 import App from './components/App.vue';
 
-import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
+import Vue from 'vue';
+import BootstrapVue from 'bootstrap-vue';
 
 Vue.use(BootstrapVue);
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 
 const app = new Vue({
@@ -35,5 +34,4 @@ const app = new Vue({
     components: {
         App
     },
-    render: h => h(App)
 });
