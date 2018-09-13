@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('dashboard2');
+    return view('dashboard');
 });
 
 Route::group(['middleware' => 'auth'], function () {
