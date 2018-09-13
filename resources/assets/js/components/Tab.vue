@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div v-for="task in tasks">
             <main-task :task="task"></main-task>
         </div>
