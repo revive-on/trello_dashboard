@@ -9,6 +9,7 @@
   "type": "project",
   "require": {
     "php": "^7.1.3",
+    "atnic/laravel-admin-lte": "^0.5.1",
     "fideloper/proxy": "^4.0",
     "horace-velmont/php-trello-api": "0.9.5.x-dev@dev",
     "laravel/framework": "5.6.*",
