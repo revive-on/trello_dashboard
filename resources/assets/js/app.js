@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -22,18 +21,26 @@ import App from './components/App.vue';
 
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
+import VueRouter from 'vue-router';
 
 Vue.use(BootstrapVue);
+Vue.use(VueRouter);
 
+import router from './router'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import 'vue2-admin-lte/src/lib/css';
-import 'vue2-admin-lte/src/lib/script';
+import EventBus from 'va/lib/eventBus.js'
+import 'va/lib/css';
+import 'va/lib/script';
+import 'va/lib/global';
+import axios from 'axios';
 
+Vue.prototype.$bus = EventBus;
+Vue.prototype.$http = axios;
 
 const app = new Vue({
     el: '#app',
-
+    router,
     components: {
         App
     },
