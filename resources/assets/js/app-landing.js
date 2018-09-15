@@ -18,23 +18,8 @@ window.Vue = require('vue')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import App from './components/App.vue';
-import Tabs from './components/Tabs.vue';
-import Tab from './components/Tab.vue';
-
-import Vue from 'vue';
-import BootstrapVue from 'bootstrap-vue';
-
-Vue.use(BootstrapVue);
-
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-
-
+/* eslint-disable no-undef, no-unused-vars */
 const app = new Vue({
-    el: '#app',
+  el: '#app'
+})
 
-    components: {
-        App, Tabs, Tab
-    },
-});
