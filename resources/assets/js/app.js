@@ -18,22 +18,24 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import App from './components/App.vue';
-
-import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
-
-Vue.use(BootstrapVue);
-
+import 'core-js/es6/promise'
+import 'core-js/es6/string'
+import 'core-js/es7/array'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import DefaultContainer from './components/DefaultContainer.vue';
+import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
+import router from './router'
+
+Vue.use(BootstrapVue);
 
 
 const app = new Vue({
     el: '#app',
-
+    router,
     components: {
-        App
+        DefaultContainer
     },
-    render: h => h(App)
+    render: h => h(DefaultContainer)
 });
